@@ -2,121 +2,120 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For Shifa ❤️</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday ❤️</title>
+
 <style>
-body {
+body{
   margin:0;
-  background: pink;
   overflow:hidden;
-  font-family: "Comic Sans MS", cursive;
+  background:linear-gradient(to bottom, #ff9a9e, #fad0c4);
+  font-family:Arial, sans-serif;
+  text-align:center;
 }
-.screen {
+
+/* HEARTS */
+.heart{
   position:absolute;
-  width:100%;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
+  color:pink;
+  font-size:20px;
+  animation:float 6s linear infinite;
 }
-.hidden {display:none;}
-button {
-  padding:15px 25px;
+
+@keyframes float{
+  0%{transform:translateY(100vh); opacity:1;}
+  100%{transform:translateY(-10vh); opacity:0;}
+}
+
+/* TEXT */
+#message{
+  position:absolute;
+  bottom:20%;
+  width:100%;
+  font-size:32px;
+  color:white;
+  text-shadow:2px 2px 5px black;
+  animation:fade 2s ease-in-out;
+}
+
+@keyframes fade{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+
+/* BUTTON */
+button{
+  padding:12px 25px;
   font-size:18px;
   border:none;
   border-radius:20px;
-  background:#ff4081;
+  background:#ff3366;
   color:white;
+  cursor:pointer;
 }
-#gift {font-size:120px; animation: float 2s infinite alternate;}
-@keyframes float {from{transform:translateY(0)} to{transform:translateY(-20px)}}
-.heart {
-  position:absolute;
-  color:red;
-  font-size:20px;
-  animation: fall 6s linear infinite;
+
+/* FINAL SCREEN */
+#final{
+  display:none;
+  background:black;
+  color:white;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
 }
-@keyframes fall {
-  from{top:-10%;}
-  to{top:110%;}
-}
-.message {
-  font-size:22px;
-  text-align:center;
-  animation: fade 2s;
-}
-@keyframes fade {from{opacity:0;} to{opacity:1;}}
-#cake {font-size:120px;}
 </style>
 </head>
+
 <body>
 
-<audio id="music" loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
+<!-- MUSIC -->
+<audio id="music" src="music.mp3" autoplay loop></audio>
 
-<div id="screen1" class="screen">
-  <div id="gift">🎁</div>
-  <button onclick="openGift()">Open Gift</button>
-</div>
+<div id="message">🎂 Happy Birthday My Love ❤️</div>
 
-<div id="screen2" class="screen hidden">
-  <div id="cake">🎂</div>
-  <button onclick="blow()">Blow Candles</button>
-</div>
+<br><br><br><br><br><br>
 
-<div id="screen3" class="screen hidden">
-  <div id="msg" class="message"></div>
-  <button id="nextBtn" onclick="nextMsg()">Next</button>
-</div>
+<button onclick="nextMsg()">Next 💌</button>
 
-<div id="screen4" class="screen hidden" style="background:black;color:white;">
-  <div class="message">I LOVE YOU SO MUCHHH<br>MY PRINCESS 👑❤️</div>
+<div id="final">
+  <h1 style="margin-top:40vh;">I LOVE YOU SO MUCH ❤️</h1>
+  <button onclick="closeCard()">Exit</button>
 </div>
 
 <script>
-const messages = [
-"Happy Birthday Shifa ❤️",
-"Tu meri life ki sabse beautiful smile hai 😊",
-"Tere bina sab kuch boring hai 😘",
-"May God give you all happiness 🎈",
-"I will always be with you 💖"
+let msgs = [
+ "You are my happiness 💖",
+ "You are my life 🌸",
+ "Stay with me forever 💕",
+ "I Love You My Princess 👑"
 ];
-let i=0;
 
-function openGift(){
-  document.getElementById("screen1").classList.add("hidden");
-  document.getElementById("screen2").classList.remove("hidden");
-  document.getElementById("music").play();
-}
-function blow(){
-  document.getElementById("screen2").classList.add("hidden");
-  document.getElementById("screen3").classList.remove("hidden");
-  showMsg();
-}
-function showMsg(){
-  document.getElementById("msg").innerText = messages[i];
-}
+let i = 0;
+
 function nextMsg(){
   i++;
-  if(i<messages.length){
-    showMsg();
-  } else {
-    document.getElementById("screen3").classList.add("hidden");
-    document.getElementById("screen4").classList.remove("hidden");
+  if(i < msgs.length){
+    document.getElementById("message").innerText = msgs[i];
+  }else{
+    document.getElementById("final").style.display="block";
   }
 }
-function createHeart(){
-  let h=document.createElement("div");
+
+/* HEART GENERATOR */
+setInterval(()=>{
+  let h = document.createElement("div");
   h.className="heart";
   h.innerText="❤️";
-  h.style.left=Math.random()*100+"%";
-  h.style.fontSize=(15+Math.random()*20)+"px";
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=(20+Math.random()*30)+"px";
   document.body.appendChild(h);
   setTimeout(()=>h.remove(),6000);
+},400);
+
+function closeCard(){
+  document.body.innerHTML="<h1 style='color:white;margin-top:40vh;'>Bye ❤️</h1>";
 }
-setInterval(createHeart,500);
 </script>
 
 </body>
