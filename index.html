@@ -2,119 +2,179 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday ❤️</title>
+<title>For Shifa ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body{
-  margin:0;
-  overflow:hidden;
-  background:linear-gradient(to bottom, #ff9a9e, #fad0c4);
-  font-family:Arial, sans-serif;
-  text-align:center;
+body {
+  margin: 0;
+  background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+  font-family: "Comic Sans MS", cursive;
+  overflow: hidden;
+  text-align: center;
 }
 
 /* HEARTS */
-.heart{
-  position:absolute;
-  color:pink;
-  font-size:20px;
-  animation:float 6s linear infinite;
+.heart {
+  position: absolute;
+  color: red;
+  font-size: 20px;
+  animation: fall 6s linear infinite;
 }
 
-@keyframes float{
-  0%{transform:translateY(100vh); opacity:1;}
-  100%{transform:translateY(-10vh); opacity:0;}
+@keyframes fall {
+  from { top: -10%; }
+  to { top: 110%; }
 }
+
+/* SCREENS */
+.screen {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top:0; left:0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hidden { display: none; }
 
 /* TEXT */
-#message{
-  position:absolute;
-  bottom:20%;
-  width:100%;
-  font-size:32px;
-  color:white;
-  text-shadow:2px 2px 5px black;
-  animation:fade 2s ease-in-out;
+#message, #msg {
+  font-size: 28px;
+  color: white;
+  text-shadow: 2px 2px 5px black;
+  margin-bottom: 20px;
 }
 
-@keyframes fade{
-  from{opacity:0;}
-  to{opacity:1;}
+/* BUTTONS */
+button {
+  padding: 12px 25px;
+  font-size: 18px;
+  border: none;
+  border-radius: 20px;
+  background: #ff3366;
+  color: white;
+  cursor: pointer;
+  margin-top: 20px;
 }
 
-/* BUTTON */
-button{
-  padding:12px 25px;
-  font-size:18px;
-  border:none;
-  border-radius:20px;
-  background:#ff3366;
-  color:white;
-  cursor:pointer;
+/* GIFT & CAKE ANIMATION */
+#gift, #cake {
+  font-size: 120px;
+  animation: float 2s infinite alternate;
+}
+
+@keyframes float {
+  from { transform: translateY(0); }
+  to { transform: translateY(-20px); }
 }
 
 /* FINAL SCREEN */
-#final{
-  display:none;
-  background:black;
-  color:white;
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
+#final {
+  display: none;
+  background: black;
+  color: white;
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
 }
 </style>
 </head>
 
 <body>
 
+<!-- HEARTS WILL APPEAR AUTOMATICALLY -->
 <!-- MUSIC -->
-<audio id="music" src="music.mp3" autoplay loop></audio>
+<audio id="music" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
 
-<div id="message">🎂 Happy Birthday My Love ❤️</div>
+<!-- SCREEN 1: GIFT -->
+<div id="screen1" class="screen">
+  <div id="gift">🎁</div>
+  <button onclick="openGift()">Open Gift</button>
+</div>
 
-<br><br><br><br><br><br>
+<!-- SCREEN 2: CAKE -->
+<div id="screen2" class="screen hidden">
+  <div id="cake">🎂</div>
+  <button onclick="blow()">Blow Candles</button>
+</div>
 
-<button onclick="nextMsg()">Next 💌</button>
+<!-- SCREEN 3: MESSAGES -->
+<div id="screen3" class="screen hidden">
+  <div id="msg"></div>
+  <button onclick="nextMsg()">Next 💌</button>
+</div>
 
-<div id="final">
-  <h1 style="margin-top:40vh;">I LOVE YOU SO MUCH ❤️</h1>
-  <button onclick="closeCard()">Exit</button>
+<!-- SCREEN 4: FINAL -->
+<div id="screen4" class="screen hidden" style="background:black;color:white;">
+  <div id="final">
+    I LOVE YOU SO MUCH ❤️
+    <button onclick="closeCard()">Exit</button>
+  </div>
 </div>
 
 <script>
-let msgs = [
- "You are my happiness 💖",
- "You are my life 🌸",
- "Stay with me forever 💕",
- "I Love You My Princess 👑"
+// ❤️ HEARTS GENERATOR
+function createHeart(){
+  let h = document.createElement("div");
+  h.className = "heart";
+  h.innerText = "❤️";
+  h.style.left = Math.random()*100 + "vw";
+  h.style.fontSize = (20 + Math.random()*30) + "px";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(), 6000);
+}
+setInterval(createHeart, 400);
+
+// MESSAGES
+const messages = [
+  "Happy Birthday Shifa ❤️",
+  "Tu meri life ki sabse beautiful smile hai 😊",
+  "Tere bina sab kuch boring hai 😘",
+  "May God give you all happiness 🎈",
+  "I will always be with you 💖"
 ];
 
 let i = 0;
 
+function openGift(){
+  document.getElementById("screen1").classList.add("hidden");
+  document.getElementById("screen2").classList.remove("hidden");
+  document.getElementById("music").play();
+}
+
+function blow(){
+  document.getElementById("screen2").classList.add("hidden");
+  document.getElementById("screen3").classList.remove("hidden");
+  showMsg();
+}
+
+function showMsg(){
+  document.getElementById("msg").innerText = messages[i];
+}
+
 function nextMsg(){
   i++;
-  if(i < msgs.length){
-    document.getElementById("message").innerText = msgs[i];
-  }else{
-    document.getElementById("final").style.display="block";
+  if(i < messages.length){
+    showMsg();
+  } else {
+    document.getElementById("screen3").classList.add("hidden");
+    document.getElementById("screen4").classList.remove("hidden");
   }
 }
 
-/* HEART GENERATOR */
-setInterval(()=>{
-  let h = document.createElement("div");
-  h.className="heart";
-  h.innerText="❤️";
-  h.style.left=Math.random()*100+"vw";
-  h.style.fontSize=(20+Math.random()*30)+"px";
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),6000);
-},400);
-
 function closeCard(){
-  document.body.innerHTML="<h1 style='color:white;margin-top:40vh;'>Bye ❤️</h1>";
+  document.body.innerHTML = "<h1 style='color:white;margin-top:40vh;'>Bye ❤️</h1>";
 }
 </script>
 
