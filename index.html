@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +17,7 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+/* Screens */
 .screen {
   position:absolute;
   width:100%;
@@ -24,10 +26,13 @@ body {
   flex-direction:column;
   align-items:center;
   justify-content:center;
+  gap: 60px; /* 🔥 button niche */
+  z-index: 1;
 }
 
 .hidden {display:none;}
 
+/* Button */
 button {
   padding:14px 28px;
   font-size:16px;
@@ -45,6 +50,7 @@ button:hover {
   transform:scale(1.05);
 }
 
+/* Gift */
 #gift {
   font-size:110px;
   animation: float 2s infinite alternate;
@@ -55,10 +61,14 @@ button:hover {
   to{transform:translateY(-20px)}
 }
 
+/* Hearts (BACKGROUND) */
 .heart {
   position:absolute;
   color:red;
   animation: fall 6s linear infinite;
+  z-index: 0;
+  opacity: 0.6;
+  filter: blur(1px);
 }
 
 @keyframes fall {
@@ -66,12 +76,15 @@ button:hover {
   to{top:110%;}
 }
 
+/* Message */
 .message {
   font-size:26px;
   text-align:center;
   animation: fade 1.5s;
   font-family: 'Playfair Display', serif;
   padding: 0 20px;
+  position: relative;
+  z-index: 2;
 }
 
 @keyframes fade {
@@ -79,6 +92,7 @@ button:hover {
   to{opacity:1;}
 }
 
+/* Cake */
 #cake {
   font-size:110px;
 }
@@ -91,21 +105,25 @@ button:hover {
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
+<!-- Screen 1 -->
 <div id="screen1" class="screen">
   <div id="gift">🎁</div>
   <button onclick="openGift()">OPEN</button>
 </div>
 
+<!-- Screen 2 -->
 <div id="screen2" class="screen hidden">
   <div id="cake">🎂</div>
-  <button onclick="blow()">MAKE A WISH</button>
+  <button onclick="blow()">GET A MASSAGE</button>
 </div>
 
+<!-- Screen 3 -->
 <div id="screen3" class="screen hidden">
   <div id="msg" class="message"></div>
   <button onclick="nextMsg()">NEXT</button>
 </div>
 
+<!-- Screen 4 -->
 <div id="screen4" class="screen hidden" style="background:black;color:white;">
   <div class="message">I AM VERY LUCKY TO HAVE YOU ❤️<br>MY PRINCESS 👑</div>
 </div>
