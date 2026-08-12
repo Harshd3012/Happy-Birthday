@@ -1,192 +1,535 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>For Mitali ❤️</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>For Mitali ❤️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Premium Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+    <!-- Premium Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Montserrat:wght@300;500&display=swap"
+        rel="stylesheet"
+    >
 
-<style>
-body {
-  margin:0;
-  background: linear-gradient(135deg, #ff9a9e, #fecfef);
-  overflow:hidden;
-  font-family: 'Montserrat', sans-serif;
-}
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-/* Screens */
-.screen {
-  position:absolute;
-  width:100%;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap: 60px; /* 🔥 button niche */
-  z-index: 1;
-}
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(135deg, #ff9a9e, #fecfef);
+            font-family: 'Montserrat', sans-serif;
+        }
 
-.hidden {display:none;}
+        /* =========================
+           COMMON SCREEN
+        ========================= */
 
-/* Button */
-button {
-  padding:14px 28px;
-  font-size:16px;
-  border:none;
-  border-radius:30px;
-  background:#000;
-  color:white;
-  font-family:'Montserrat', sans-serif;
-  letter-spacing:1px;
-  cursor:pointer;
-  transition:0.3s;
-}
+        .screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
 
-button:hover {
-  transform:scale(1.05);
-}
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
 
-/* Gift */
-#gift {
-  font-size:110px;
-  animation: float 2s infinite alternate;
-}
+            gap: 60px;
 
-@keyframes float {
-  from{transform:translateY(0)}
-  to{transform:translateY(-20px)}
-}
+            z-index: 2;
+        }
 
-/* Hearts (BACKGROUND) */
-.heart {
-  position:absolute;
-  color:red;
-  animation: fall 6s linear infinite;
-  z-index: 0;
-  opacity: 0.6;
-  filter: blur(1px);
-}
+        .hidden {
+            display: none !important;
+        }
 
-@keyframes fall {
-  from{top:-10%;}
-  to{top:110%;}
-}
+        /* =========================
+           BUTTON
+        ========================= */
 
-/* Message */
-.message {
-  font-size:26px;
-  text-align:center;
-  animation: fade 1.5s;
-  font-family: 'Playfair Display', serif;
-  padding: 0 20px;
-  position: relative;
-  z-index: 2;
-}
+        button {
+            padding: 14px 30px;
 
-@keyframes fade {
-  from{opacity:0;}
-  to{opacity:1;}
-}
+            font-size: 16px;
+            font-weight: 500;
 
-/* Cake */
-#cake {
-  font-size:110px;
-}
-</style>
+            border: none;
+            border-radius: 30px;
+
+            background: #000;
+            color: #fff;
+
+            font-family: 'Montserrat', sans-serif;
+
+            letter-spacing: 1px;
+
+            cursor: pointer;
+
+            transition: all 0.3s ease;
+
+            position: relative;
+            z-index: 10;
+        }
+
+        button:hover {
+            transform: scale(1.08);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        /* =========================
+           GIFT
+        ========================= */
+
+        #gift {
+            font-size: 110px;
+
+            animation: float 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes float {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* =========================
+           CAKE
+        ========================= */
+
+        #cake {
+            font-size: 110px;
+
+            animation: cakeFloat 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes cakeFloat {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-12px);
+            }
+        }
+
+        /* =========================
+           MESSAGE
+        ========================= */
+
+        .message {
+            max-width: 900px;
+
+            padding: 0 25px;
+
+            text-align: center;
+
+            font-family: 'Playfair Display', serif;
+
+            font-size: 28px;
+
+            line-height: 1.5;
+
+            color: #111;
+
+            position: relative;
+
+            z-index: 5;
+
+            animation: fadeIn 1.2s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* =========================
+           FINAL SCREEN
+        ========================= */
+
+        #screen4 {
+            background: #000;
+            color: #fff;
+        }
+
+        #screen4 .message {
+            color: #fff;
+        }
+
+        /* =========================
+           HEARTS
+        ========================= */
+
+        .heart {
+            position: absolute;
+
+            top: -50px;
+
+            color: red;
+
+            opacity: 0.6;
+
+            z-index: 1;
+
+            pointer-events: none;
+
+            animation: fall linear forwards;
+
+            filter: blur(0.5px);
+        }
+
+        @keyframes fall {
+            from {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            to {
+                transform: translateY(120vh) rotate(360deg);
+            }
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            .message {
+                font-size: 22px;
+                line-height: 1.5;
+                padding: 0 20px;
+            }
+
+            #gift,
+            #cake {
+                font-size: 90px;
+            }
+
+            button {
+                padding: 13px 25px;
+                font-size: 15px;
+            }
+
+            .screen {
+                gap: 45px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<audio id="music" loop>
-<source src="music.mp3?v=2" type="audio/mpeg">
-</audio>
+    <!-- =========================
+         MUSIC
+    ========================= -->
 
-<!-- Screen 1 -->
-<div id="screen1" class="screen">
-  <div id="gift">🎁</div>
-  <button onclick="openGift()">OPEN</button>
-</div>
+    <audio id="music" loop>
+        <source src="music.mp3?v=2" type="audio/mpeg">
+    </audio>
 
-<!-- Screen 2 -->
-<div id="screen2" class="screen hidden">
-  <div id="cake">🎂</div>
-  <button onclick="blow()">GET A MASSAGE..</button>
-</div>
 
-<!-- Screen 3 -->
-<div id="screen3" class="screen hidden">
-  <div id="msg" class="message"></div>
-  <button onclick="nextMsg()">NEXT</button>
-</div>
+    <!-- =========================
+         SCREEN 1
+    ========================= -->
 
-<!-- Screen 4 -->
-<div id="screen4" class="screen hidden" style="background:black;color:white;">
-  <div class="message">I AM VERY LUCKY TO HAVE A FRIEND LIKE YOU ❤️<br>MISS MITALI KOSHTI 👑</div>
-</div>
+    <div id="screen1" class="screen">
 
-<script>
-const messages = [
-  "Happy Birthday Mituuuu...!! ❤️",
-  "May Dwarkadhish Bless You 💖",
-  "Just Be Stay Happy It Suits You......",
-  "Sometimes I Don't Say It, But You Truly Mean A Lot To Me... ❤️",
-  "Tu Mara Jivan No Ek Best Part Rahi Chhe…..",
-  "Ha I Know Ghani Vakhat Aapdu Ladvaaanu Ke Gusse Thavaanu Thatu Hoy Chhe... 😅",
-  "But Still.... You're Best Female Friend I Ever Met..!! ❤️",
-  "Taru Hasvu, Taru E Chidavvu, Taru E Sarcasm Ma Taunt Maarvo Badha Ma Ek Alag J Vibe Aave Chhe... 🌍",
-  "Tu Bhale Kya Pan Rahe Hamesha Khush Reh Bas Etlu J Icchu Chu 💕",
-  "Many Many Happy Returns Of The Day ❤️",
-  "Bas Aatlu J Kehvu Chhe Ke Tu Jevi Chhe Ne, Evi J Rehje... Koi Change Ni Jarur Nathi... 🫶",
-  "Ane Ha, Aapdi Aa Bakchodi, Ladai Ane Random Conversations Aavi J Rite Chalta Rehva Joiye... 😂❤️",
-  "Ane Ha... Aapdi Aa Friendship Aavi J Mast, Crazy Ane Thodi Pagal Rehvi Joiye Hamesha... 😂❤️",
-  "Have A Superb Day......",
-  "– Aapka Subh Chintak"
-];
+        <div id="gift">
+            🎁
+        </div>
 
-let i = 0;
+        <button onclick="openGift()">
+            OPEN
+        </button>
 
-function openGift(){
-  document.getElementById("screen1").classList.add("hidden");
-  document.getElementById("screen2").classList.remove("hidden");
-  document.getElementById("music").play().catch(()=>{});
-}
+    </div>
 
-function blow(){
-  document.getElementById("screen2").classList.add("hidden");
-  document.getElementById("screen3").classList.remove("hidden");
-  showMsg();
-}
 
-function showMsg(){
-  document.getElementById("msg").innerText = messages[i];
-}
+    <!-- =========================
+         SCREEN 2
+    ========================= -->
 
-function nextMsg(){
-  i++;
-  if(i < messages.length){
-    showMsg();
-  } else {
-    document.getElementById("screen3").classList.add("hidden");
-    document.getElementById("screen4").classList.remove("hidden");
-  }
-}
+    <div id="screen2" class="screen hidden">
 
-function createHeart(){
-  let h = document.createElement("div");
-  h.className = "heart";
-  h.innerText = "❤️";
-  h.style.left = Math.random()*100 + "%";
-  h.style.fontSize = (15 + Math.random()*20) + "px";
-  document.body.appendChild(h);
-  setTimeout(() => h.remove(), 6000);
-}
+        <div id="cake">
+            🎂
+        </div>
 
-setInterval(createHeart, 500);
-</script>
+        <button onclick="showMessages()">
+            GET A MESSAGE..
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         SCREEN 3
+    ========================= -->
+
+    <div id="screen3" class="screen hidden">
+
+        <div id="msg" class="message"></div>
+
+        <button onclick="nextMsg()">
+            NEXT
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         SCREEN 4
+    ========================= -->
+
+    <div id="screen4" class="screen hidden">
+
+        <div class="message">
+
+            I AM VERY LUCKY TO HAVE A FRIEND LIKE YOU ❤️
+
+            <br><br>
+
+            MISS MITALI KOSHTI 👑
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        /* =========================
+           BIRTHDAY MESSAGES
+        ========================= */
+
+        const messages = [
+
+            "Happy Birthday Mituuuu...!! ❤️",
+
+            "May Dwarkadhish Bless You 💖",
+
+            "Just Be Stay Happy It Suits You......",
+
+            "Sometimes I Don't Say It, But You Truly Mean A Lot To Me... ❤️",
+
+            "Tu Mara Jivan No Ek Best Part Rahi Chhe…..",
+
+            "Ha I Know Ghani Vakhat Aapdu Ladvaaanu Ke Gusse Thavaanu Thatu Hoy Chhe... 😅",
+
+            "But Still.... You're Best Female Friend I Ever Met..!! ❤️",
+
+            "Taru Hasvu, Taru E Chidavvu, Taru E Sarcasm Ma Taunt Maarvo Badha Ma Ek Alag J Vibe Aave Chhe... 🌍",
+
+            "Tu Bhale Kya Pan Rahe Hamesha Khush Reh Bas Etlu J Icchu Chu 💕",
+
+            "Many Many Happy Returns Of The Day ❤️",
+
+            "Bas Aatlu J Kehvu Chhe Ke Tu Jevi Chhe Ne, Evi J Rehje... Koi Change Ni Jarur Nathi... 🫶",
+
+            "Aapdi Aa Bakchodi, Ladai Ane Random Conversations Aavi J Rite Chalta Rehva Joiye... 😂❤️",
+
+            "Ane Ha... Aapdi Aa Friendship Aavi J Mast, Crazy Ane Thodi Pagal Rehvi Joiye Hamesha... 😂❤️",
+
+            "Have A Superb Day......",
+
+            "– Aapka Subh Chintak"
+
+        ];
+
+
+        /* =========================
+           MESSAGE COUNTER
+        ========================= */
+
+        let currentMessage = 0;
+
+
+        /* =========================
+           OPEN GIFT
+        ========================= */
+
+        function openGift() {
+
+            document
+                .getElementById("screen1")
+                .classList
+                .add("hidden");
+
+
+            document
+                .getElementById("screen2")
+                .classList
+                .remove("hidden");
+
+
+            /* Start Music */
+
+            const music = document.getElementById("music");
+
+            music.play().catch(function(error) {
+
+                console.log("Music playback blocked:", error);
+
+            });
+
+        }
+
+
+        /* =========================
+           SHOW FIRST MESSAGE
+        ========================= */
+
+        function showMessages() {
+
+            document
+                .getElementById("screen2")
+                .classList
+                .add("hidden");
+
+
+            document
+                .getElementById("screen3")
+                .classList
+                .remove("hidden");
+
+
+            currentMessage = 0;
+
+            showMessage();
+
+        }
+
+
+        /* =========================
+           DISPLAY MESSAGE
+        ========================= */
+
+        function showMessage() {
+
+            const messageBox =
+                document.getElementById("msg");
+
+
+            messageBox.style.animation = "none";
+
+
+            void messageBox.offsetWidth;
+
+
+            messageBox.style.animation =
+                "fadeIn 1.2s ease";
+
+
+            messageBox.innerText =
+                messages[currentMessage];
+
+        }
+
+
+        /* =========================
+           NEXT MESSAGE
+        ========================= */
+
+        function nextMsg() {
+
+            currentMessage++;
+
+
+            if (currentMessage < messages.length) {
+
+                showMessage();
+
+            } else {
+
+                document
+                    .getElementById("screen3")
+                    .classList
+                    .add("hidden");
+
+
+                document
+                    .getElementById("screen4")
+                    .classList
+                    .remove("hidden");
+
+            }
+
+        }
+
+
+        /* =========================
+           CREATE FALLING HEART
+        ========================= */
+
+        function createHeart() {
+
+            const heart =
+                document.createElement("div");
+
+
+            heart.className = "heart";
+
+
+            heart.innerText = "❤️";
+
+
+            heart.style.left =
+                Math.random() * 100 + "%";
+
+
+            heart.style.fontSize =
+                (15 + Math.random() * 25) + "px";
+
+
+            heart.style.animationDuration =
+                (4 + Math.random() * 4) + "s";
+
+
+            document.body.appendChild(heart);
+
+
+            setTimeout(function() {
+
+                heart.remove();
+
+            }, 8000);
+
+        }
+
+
+        /* =========================
+           HEART GENERATOR
+        ========================= */
+
+        setInterval(createHeart, 500);
+
+    </script>
 
 </body>
 </html>
-```
